@@ -19,17 +19,14 @@ export const taskSlice = createSlice({
                 state.splice(state.indexOf(taskFound), 1)
             }
         },
-        // updateTask: (state, action) => {
-        //     return state.map(task => {
-        //         if (task.id === action.payload.id) {
-        //             return {
-        //                 ...task,
-        //                 ...action.payload
-        //             }
-        //         }
-        //         return task
-        //     })
-        // }
+        updateTask: (state, action) => {
+            const { id, title, description } = action.payload
+            const taskFound = state.find(task => task.id === id)
+            if (taskFound) {
+                taskFound.title = title
+                taskFound.description = description
+            }
+        }
     }
 })
 
